@@ -50,6 +50,7 @@ function App() {
           <div key={race.id} className="dogs-card">
             <h2>{race.name}</h2>
           <p><strong>Temperament:</strong> {race.temperament ?? "Not Specified"}</p>
+          <p><strong>Origin:</strong> {race.origin ?? "Not Specified"}</p>
           </div>
         ))}
         </div>
