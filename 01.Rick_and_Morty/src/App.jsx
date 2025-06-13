@@ -49,7 +49,7 @@ function App() {
             timer // simulación de retardo
           ])
           // Guardamos los datos obtenidos en los estados correspondientes
-          setCharacterts(response.results); // Guardamos los personajes
+          setCharacters(response.results); // Guardamos los personajes
           setInfo(response.info); // Guardamos la información de paginación
         }catch(error){
           console.error('Ups! Algo salió mal:', error); // Manejamos errores de la API
@@ -81,12 +81,12 @@ function App() {
         {loading ? (
           <div className="d-flex justify-content-center">
             {/* Spinner de carga  */}
-            <div className="spinner-grow text-primary" style={{ width: '3rem', height: '3rem'}}/>
-            <div className="spinner-grow text-succes" style={{ width: '3rem', height: '3rem'}}/>
+            <div className="spinner-grow text-primary me-2" style={{ width: '3rem', height: '3rem'}}/>
+            <div className="spinner-grow text-success" style={{ width: '3rem', height: '3rem'}}/>
           </div>
         ) : (
             <>
-              <Characters />
+              <Characters characters={characters} darkMode={darkMode} /> {/* listado de personajes */}
             </>
         )}
 
