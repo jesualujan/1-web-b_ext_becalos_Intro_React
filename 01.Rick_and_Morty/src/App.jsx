@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 
 // importar componentes
 import Navbar from './components/Navbar/Navbar'
+import Characters from './components/Characters/Characters'
 
 // importar estilos
 import './App.css'
@@ -51,7 +52,7 @@ function App() {
           setCharacterts(response.results); // Guardamos los personajes
           setInfo(response.info); // Guardamos la información de paginación
         }catch(error){
-          console.error('Ups! Algo salió mal:', error); // Manejamos errores de la petición
+          console.error('Ups! Algo salió mal:', error); // Manejamos errores de la API
           setCharacters([]); // En caso de error, vaciamos la lista de personajes
         }
         finally{
@@ -62,10 +63,37 @@ function App() {
 
   return (
     <>
-     <Navbar />
-      <h1>Rick and Morty</h1>
-      <p>Welcome to the Rick and Morty app!</p>
-      
+     <Navbar /> {/* Componente de la barra de navegación */}
+
+     <div className="container py-4">
+      {/* Encabezado y botón de modo oscuro */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>😈 Rick & Morty API</h1>
+        <button
+         className={darkMode ? 'btn btn-light' : 'btn btn-dark'}
+         onClick={() => setDarkMode(!darkMode)} // Alterna el estado de darkMode al hacer clic
+        >
+          {darkMode ? '🌞 Modo Claro' : '🌙 Modo Oscuro'}
+        </button>
+      </div>
+
+       {/* Contenido principal o indicador de carga (loading) */}
+        {loading ? (
+          <div className="d-flex justify-content-center">
+            {/* Spinner de carga  */}
+            <div className="spinner-grow text-primary" style={{ width: '3rem', height: '3rem'}}/>
+            <div className="spinner-grow text-succes" style={{ width: '3rem', height: '3rem'}}/>
+          </div>
+        ) : (
+            <>
+              <Characters />
+            </>
+        )}
+
+
+
+
+     </div>
     </>
   )
 }
