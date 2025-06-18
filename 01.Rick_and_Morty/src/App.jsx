@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Characters from "./components/Characters/Characters";
 import PagButtons from "./components/PagButtons/PagButtons";
+import FilterPanel from "./components/FilterPanel/FilterPanel";
 
 // importar estilos
 import "./App.css";
@@ -61,6 +62,20 @@ function App() {
     }
   };
 
+  // Construcción de la URL con parámetros de busqueda
+  const buildUrl = () => {
+    const params = new URLSearchParams(); // Objeto para manejar los parámetros de la URL
+    if (search) params.append("name", search); // Añadimos el parámetro de búsqueda por nombre
+    if (species) params.append("species", species); // Añadimos el parámetro de especie
+    if (status) params.append("status", status); // Añadimos el parámetro de estado
+    return `${BASE_URL}?${params.toString()}`; // Retornamos la URL completa con los parámetros
+  };
+
+  // Función para aplicar filtros y actualizar los personajes según los criterios de busqueda
+  const applyFilters = () => {
+    getCharacters(buildUrl()); // LLamar a la API con la nueva URL(con los filtros aplicados)
+  };
+
   // Función para obtener la paginación anterior si está disponible
   const onPrevious = () => {
     if (info.prev) getCharacters(info.prev); // Llamamos a la función para obtener los personajes de la página anterior
@@ -86,6 +101,17 @@ function App() {
           </button>
         </div>
 
+        {/* Componente de panel de filtros  */}
+        <FilterPanel
+          search={search} // Estado de búsqueda por nombre
+          setSearch={setSearch} // Función para actualizar el estado de búsqueda
+          species={species} // Estado de filtro por especie
+          setSpecies={setSpecies} // Función para actualizar el estado de especie
+          status={status} // Estado de filtro por estado
+          setStatus={setStatus} // Función para actualizar el estado de estado
+          onFilter={applyFilters} // Función para aplicar los filtros
+        />
+
         {/* Contenido principal o indicador de carga (loading) */}
         {loading ? (
           <div className="d-flex justify-content-center">
@@ -105,10 +131,15 @@ function App() {
               info={info}
               onPrevious={onPrevious} // Función para manejar la paginación anterior
               onNext={onNext} // Función para manejar la paginación siguiente
-            />{" "}
+            />
             {/* Botones de paginación */}
-            <Characters characters={characters} darkMode={darkMode} />{" "}
+            <Characters characters={characters} darkMode={darkMode} />
             {/* listado de personajes */}
+            <PagButtons
+              info={info}
+              onPrevious={onPrevious} // Función para manejar la paginación anterior
+              onNext={onNext} // Función para manejar la paginación siguiente
+            />
           </>
         )}
       </div>
