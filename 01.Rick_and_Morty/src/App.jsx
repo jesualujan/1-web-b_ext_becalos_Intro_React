@@ -27,13 +27,23 @@ function App() {
   const [darkMode, setDarkMode] = useState(false); // Alterna entre modo claro y oscuro
 
   // useEffect ejecuta su lógica cada vez que el componente cambia o se monta
+  // Fetching a la API de Rick and Morty al cargar el componente
   useEffect(() => {
     getCharacters(BASE_URL); //llamamos a la función para obtener personajes al cargar la página
+    // return () => {
+    //   clearTimeout(timer); // Limpiamos el temporizador si el componente se desmonta
+    // }
+  }, []); // se ejecuta cada vez que cambia el estado de darkMode
+
+  // useEffect para cambiar el tema de la aplicación
+  // Dependiendo del estado de darkMode, cambia la clase del body
+  // para aplicar estilos de modo oscuro o claro
+  useEffect(() => {
     //Cambia la clase del <body> para activar el modo oscuro o claro
     document.body.className = darkMode
       ? "bg-dark text-light"
       : "bg-light text-dark";
-  }, [darkMode]); // se ejecuta cada vez que cambia el estado de darkMode
+  }, [darkMode]);
 
   // Función asíncrona para obtener los personajes de la API
   const getCharacters = async (url) => {
