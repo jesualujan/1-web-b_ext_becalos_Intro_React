@@ -1,14 +1,13 @@
-// El componente FilterPanel permite a los usuarios filtrar a los personajes por nombre, especie y estado.
+// El componente FilterPanel permite a los usuarios filtrar los personajes por nombre, especie y estado.
 
-// Recibe las siguientes propiedades (props) :
-// - search: Estado que almacena el texto de búsqueda
-// - setSearch: Función que actualiza el estado "search"
-// - species: Estado que almacena la especie seleccionada
-// - setSpecies: Función que actualiza el estado "species"
-// - status: Estado que almacena el estado del personaje (vivo, muerto, desconocido)
-// - setStatus: Función que actualiza el estado "status"
-// - onFilter: Función que ejecuta la búsqueda con los filtros seleccionados
-
+// Recibe las siguientes props:
+// - `search`: Estado que almacena el texto de búsqueda.
+// - `setSearch`: Función que actualiza el estado `search`.
+// - `species`: Estado que almacena la especie seleccionada.
+// - `setSpecies`: Función que actualiza el estado `species`.
+// - `status`: Estado que almacena el estado del personaje (vivo, muerto, desconocido).
+// - `setStatus`: Función que actualiza el estado `status`.
+// - `onFilter`: Función que ejecuta la búsqueda con los filtros seleccionados.
 const FilterPanel = ({
   search,
   setSearch,
