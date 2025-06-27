@@ -11,6 +11,10 @@ import Signup from '../pages/Signup';
 const AppRoutes = ({ user, setUser }) => (
   // ⛳ <Routes> reemplaza al antiguo <Switch> desde React Router v6
   <Routes>
+      {/* Ruta para el login. Pasamos setUser como prop para actualizar el estado */}
+      <Route path="/login" element={<Login setUser={setUser} />} />
+      {/* Ruta para el registro */}
+      <Route path="/signup" element={<Signup />} />
     {/* Ruta raíz ("/"): si hay usuario, saluda, si no, redirige a login */}
     <Route
       path="/"
@@ -20,17 +24,12 @@ const AppRoutes = ({ user, setUser }) => (
           : <Navigate to="/login" />
       }
     />
-    {/* Ruta para el login. Pasamos setUser como prop para actualizar el estado */}
-    <Route path="/login" element={<Login setUser={setUser} />} />
-    {/* Ruta para el registro */}
-    <Route path="/signup" element={<Signup />} />
     {/* Ruta comodín (404): se muestra si no coincide ninguna ruta anterior */}
     <Route path="*" element={
     <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100">
       <h1 className="text-6xl font-bold text-red-600 mb-4">404</h1>
       <p className="text-2xl text-gray-800 mb-2">Página no encontrada</p>
       <p className="text-gray-600 mb-6">Lo sentimos, la ruta que buscás no existe o fue movida.</p>
-      
     </div>
   }/>
   </Routes>
