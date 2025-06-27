@@ -4,8 +4,9 @@
 // - Navigate: redirige a otra ruta si se cumple una condición
 import { Routes, Route, Navigate } from 'react-router-dom';
 // 📄 Importamos las "páginas" (componentes de rutas)
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
+import Login from '@/pages/Login.jsx';
+import Signup from '@/pages/Signup.jsx';
+
 
 // 📌 Componente que recibe el usuario actual y la función para actualizarlo
 const AppRoutes = ({ user, setUser }) => (
